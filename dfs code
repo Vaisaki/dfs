@@ -1,0 +1,43 @@
+tree = {
+ 'No Internet': ['Router Issue', 'Cable Issue', 'ISP Issue'],
+ 'Router Issue': ['Router Not Powered', 'Wrong WiFi Password'],
+ 'Cable Issue': ['Loose Cable', 'Damaged Cable'],
+ 'ISP Issue': ['Outage In Area'],
+ 'Router Not Powered': [],
+ 'Wrong WiFi Password': [],
+ 'Loose Cable': [],
+ 'Damaged Cable': [],
+ 'Outage In Area': []
+}
+def dls(node, goal, limit, depth=0):
+ print("Checking:", node, "at depth", depth)
+ if node == goal:
+ return "found", [node]
+ if depth == limit:
+ return "cutoff", None
+ cutoffoccurred = False
+ for child in tree.get(node, []):
+ result, path = dls(child, goal, limit, depth + 1)
+ if result == "found":
+ return "found", [node] + path
+ if result == "cutoff":
+ cutoffoccurred = True
+ if cutoffoccurred:
+ return "cutoff", None
+ else:
+ return "failure", None print("---- Search with depth limit = 2 ----")
+status, path = dls('No Internet', 'Loose Cable', limit=2)
+if status == "found":
+ print("\nResult: Goal 'Loose Cable' found at depth", len(path) - 1)
+ print("Path:", " -> ".join(path))
+else:
+ print("\nResult:", status)
+print("\n---- Search with depth limit = 1 ----")
+status, path = dls('No Internet', 'Loose Cable', limit=1)
+if status == "found":
+ print("\nResult: Goal found at depth", len(path) - 1)
+elif status == "cutoff":
+ print("\nResult: Cutoff occurred - depth limit 1 reached before finding 'Loose 
+Cable'")
+else:
+ print("\nResult: Failure - goal does not exist")
