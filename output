@@ -1,0 +1,15 @@
+DLS Output
+---- Search with depth limit = 2 ----
+Checking: No Internet at depth 0
+Checking: Router Issue at depth 1
+Checking: Router Not Powered at depth 2
+Checking: Wrong WiFi Password at depth 2
+Checking: Cable Issue at depth 1
+Checking: Loose Cable at depth 2
+Result: Goal 'Loose Cable' found at depth 2
+Path: No Internet -> Cable Issue -> Loose Cable
+---- Search with depth limit = 1 ----
+Checking: No Internet at depth 0
+Checking: Router Issue at depth 1
+Checking: Cable Issue at depth 1
+Checking: ISP Issue at depth 1
